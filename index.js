@@ -1,3 +1,18 @@
+function setFileInputEvent(reader) {
+  const imgFile = document.getElementById("imgFile");
+  imgFile.addEventListener("change", (event) => {
+    const file = event.target.files[0];
+    reader.readAsDataURL(file);
+  });
+}
+
+function readFile(canvas) {
+  fabric.Image.fromURL(reader.result, function (img) {
+    canvas.add(img);
+    canvas.requestRenderAll();
+  });
+}
+
 function initCanvas(id) {
   return new fabric.Canvas(id, {
     width: 500,
@@ -200,20 +215,5 @@ setBackground(bgUrl, canvas);
 setPanEvent(canvas);
 setDrawEvent(canvas);
 setFileInputEvent(reader);
-
-function setFileInputEvent(reader) {
-  const imgFile = document.getElementById("imgFile");
-  imgFile.addEventListener("change", (event) => {
-    const file = event.target.files[0];
-    reader.readAsDataURL(file);
-  });
-}
-
-function readFile(canvas) {
-  fabric.Image.fromURL(reader.result, function (img) {
-    canvas.add(img);
-    canvas.requestRenderAll();
-  });
-}
 
 reader.addEventListener("load", () => readFile(canvas));
