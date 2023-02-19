@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input id="colorPicker" data-jscolor="{}" value="#000000" />
+    <input id="imgFile" accept="image/*" type="file" />
+    <button onclick="toggleMode(modes.pan)">PanMode</button>
+    <button onclick="toggleMode(modes.draw)">DrawMode</button>
+    <button onclick="clearCanvas(canvas,svgState)">ClearCanvas</button>
+    <button onclick="restoreCanvas(canvas,svgState,bgUrl)">
+      RestoreCanvas
+    </button>
+    <canvas id="canvas"></canvas>
+    <button onclick="addRect(canvas)">AddRect</button>
+    <button onclick="addCircle(canvas)">AddCircle</button>
+    <button onclick="makeGroup(canvas,group)">MakeGroup</button>
+    <button onclick="unGroup(canvas,group)">UnGroup</button>
+    <script src="jscolor.js"></script>
+    <script src="fabric.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
