@@ -7,14 +7,28 @@
 
 - renderAll 보다는 requestRenderAll 이 최적화에 더 좋다
 - doc 에 소개되지 않은 event 와 메서드가 꽤 있다 구글링이 필요함
-  - 튜토리얼에서는 freeBrush 를 다루고 있음.
-    `     canvas.isDrawingMode = true;
-        canvas.freeDrawingBrush = new fabric.SprayBrush(canvas);
-        canvas.freeDrawingBrush.color = color;
-        canvas.freeDrawingBrush.width = 5;
-        canvas.renderAll();
-}
-`
+- 튜토리얼에서는 freeBrush, deSelected 이벤트를 다루고 있음.
+
+  ```
+      rect.on("selected", () => {
+          rect.set("fill", "white");
+          //renderAll 대기중 작업이 있으면 render안함
+          //requestRenderAll  있으면 render안함
+          canvas.requestRenderAll();
+      });
+
+      rect.on("deselected", () => {
+          rect.set("fill", color);
+          canvas.requestRenderAll();
+      });
+
+      canvas.isDrawingMode = true;
+      canvas.freeDrawingBrush = new fabric.SprayBrush(canvas);
+      canvas.freeDrawingBrush.color = color;
+      canvas.freeDrawingBrush.width = 5;
+      canvas.renderAll();
+  ```
+
 - originX originY 는 object 의 어느곳을 그 좌표에 위치 시킬지 에 대한 기능이다
 - 이벤트 세분화가 되 있지 않아서 모드 클레스를 별도로 만들어서 관리 하는것이 필요하다.
 
